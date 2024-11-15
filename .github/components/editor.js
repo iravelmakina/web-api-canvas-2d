@@ -60,8 +60,13 @@ export class Editor {
         this.#canvas.element.addEventListener("mouseup", (event) => {
             this.#pointerState = IDLE;
             if (this.#path.length) {
-                this.#currentPaths.push([...this.#path])
-                this.#path = []
+                this.#currentPaths.push({
+                    type: this.#mode,
+                    path: [...this.#path],
+                    color: this.#color,
+                    width: this.#pencilSize,
+                });
+                this.#path = [];
             }
         })
     }
@@ -84,24 +89,28 @@ export class Editor {
 
     clear() {
         this.#canvas.clean();
-
+        this.#currentPaths = [];
     }
 
     undo() {
-        const lastAction = this.#currentPaths.pop();
-        if (!lastAction) return;
+        if (this.#currentPaths.length === 0) {
+            return;
+        }
 
+        this.#currentPaths.pop();
         this.#canvas.clean();
 
         this.#currentPaths.forEach((action) => {
             if (action.type === DRAW || action.type === ERASE) {
-                this.#canvas.draw(action);
+                this.#canvas.draw(action.path);
             } else if (action.type === STAMP) {
                 const stamp = this.#stamps[action.stamp];
-                this.#canvas.drawStamp(stamp, action.coordinates); // Redraw stamps
+                this.#canvas.drawStamp(stamp, action.coordinates);
             }
         });
     }
+
+
 
     #recalculateCoordinates({ clientX, clientY }) {
         const rect = this.#canvas.element.getBoundingClientRect();
