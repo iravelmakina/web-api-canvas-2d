@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painter Tool</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header>
+    <h1>Painter</h1>
+</header>
+
+<main>
+    <div class="app">
+
+        <div class="toolbar">
+            <span class="pencil-size-display pencil-size-display-js">5</span>
+            <input type="range" class="pencil-size pencil-size-js" min="1" max="100" value="5">
+
+            <!-- Mode Buttons -->
+            <button class="undo-button undo-button-js"><</button>
+            <button class="draw-button draw-button-js active">D</button>
+            <button class="erase-button erase-button-js">E</button>
+            <button class="clear-button clear-button-js">C</button>
+
+            <div class="stamp-buttons">
+                <button class="stamp-button-js" data-stamp="stamp1">Cat Stamp</button>
+                <button class="stamp-button-js" data-stamp="stamp2">Flower Stamp</button>
+                <button class="stamp-button-js" data-stamp="stamp3">Snoopy Stamp</button>
+            </div>
+
+            <input type="color" class="color-selector color-selector-js">
+        </div>
+
+        <canvas class="canvas canvas-js"></canvas>
+    </div>
+</main>
+
+<script type="module" src="./main.js"></script>
+</body>
+</html>
