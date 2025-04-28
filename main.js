@@ -1,11 +1,17 @@
 import { CanvasAPI } from "./components/canvas.js";
 import { Editor } from "./components/editor.js";
-import { setupUI } from "./ui/eventListeners.js";
+import { setupUI } from "./ui/event-listeners.js";
 
+
+const stampSources = {
+    stamp1: "./images/cat-stamp.png",
+    stamp2: "./images/flower-stamp.png",
+    stamp3: "./images/snoopy-stamp.png",
+};
 
 const canvasElement = document.querySelector(".canvas-js");
 const canvas = new CanvasAPI(canvasElement);
-const editor = new Editor(canvas);
+const editor = new Editor(canvas, stampSources);
 
 editor.setMode("draw");
 

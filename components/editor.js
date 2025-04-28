@@ -12,20 +12,20 @@ export class Editor {
     #currentPaths = [];
     #pencilSize = 5;
     #color = "#000";
-    #stamps = {
-        stamp1: new Image(),
-        stamp2: new Image(),
-        stamp3: new Image(),
-    };
-    #currentStamp = "stamp1";
+    #stamps = {};
+    #currentStamp = null
 
 
-    constructor(canvas) {
+    constructor(canvas, stampSources) {
         this.#canvas = canvas;
 
-        this.#stamps.stamp1.src = "./img/catStamp.png";
-        this.#stamps.stamp2.src = "./img/flowerStamp.png";
-        this.#stamps.stamp3.src = "./img/snoopyStamp.png";
+        Object.keys(stampSources).forEach((key) => {
+            const image = new Image();
+            image.src = stampSources[key];
+            this.#stamps[key] = image;
+        });
+
+        this.#currentStamp = Object.keys(this.#stamps)[0];
 
         this.#canvas.element.addEventListener("mousemove", (event) => {
             const coordinates = this.#recalculateCoordinates(event);
@@ -57,7 +57,7 @@ export class Editor {
             }
         });
 
-        this.#canvas.element.addEventListener("mouseup", (event) => {
+        this.#canvas.element.addEventListener("mouseup", () => {
             this.#pointerState = IDLE;
             if (this.#path.length) {
                 this.#currentPaths.push({
