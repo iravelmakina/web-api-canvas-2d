@@ -28,7 +28,7 @@ It allows users to draw, erase, undo, clear the canvas, adjust pencil size and c
 ```
 
 ## Screenshots
-<img width="1512" alt="Screenshot 2025-04-28 at 18 03 44" src="https://github.com/user-attachments/assets/ad6b838a-20b0-4ae3-9d27-2a8839b73083" />
+<img width="1512" alt="Screenshot 2025-04-30 at 14 59 37" src="https://github.com/user-attachments/assets/0b6f3d4f-8f6d-4ae6-8b02-d5d0e5db8a41" />
 
 
 ## Tech Stack
